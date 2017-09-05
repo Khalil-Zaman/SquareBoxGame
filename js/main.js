@@ -9,17 +9,20 @@ var gravity;
 var current_acceleration;
 var jump_acceleration;
 var jump;
+
+var level_create = false;
+var horizontal_division = 30;
+var vertical_division = 45;
 function setup() {
 	createCanvas(windowWidth,windowHeight);
 	initialize_variables();
-	alert(frameRate());
 	noStroke();
 }
 
 function draw() {
 	background(0);
 	background_setup();
-	run();
+	if(level_create == false) run();
 }
 
 function keyPressed() {
@@ -29,8 +32,6 @@ function keyPressed() {
 }
 
 function initialize_variables(){
-	alert(((windowWidth / 45)/2)*60);
-	alert(((windowWidth / 45)/2)*30);
 	bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 	topbar = bottombar;
 	player_width = windowWidth/45;
@@ -51,17 +52,18 @@ function background_setup(){
 	rect(0, 0, windowWidth, topbar);
 	fill(255);
 	rect(0, (windowHeight-bottombar-topbar)/3 + topbar, windowWidth, (windowHeight-bottombar - topbar)/3);
-	// vertical lines
-	m_x = 45;
-	for (i = 0; i<m_x; i++){
-		stroke(123);
-		line(i*(windowWidth/m_x), topbar, i*(windowWidth/m_x), windowHeight-bottombar);
+	
+	if (level_create == true){
+		// vertical lines
+		for (i = 0; i<vertical_division; i++){
+			stroke(123);
+			line(i*(windowWidth/vertical_division), topbar, i*(windowWidth/vertical_division), windowHeight-bottombar);
+		}
+		// horizontal lines
+		for (i = 0; i<horizontal_division; i++){
+			stroke(123);
+			line(0, i*((windowHeight-bottombar-topbar)/horizontal_division)+topbar, windowWidth, i*((windowHeight-bottombar-topbar)/horizontal_division)+topbar);
+		}
+		noStroke();
 	}
-	// horizontal lines
-	m_x = 30;
-	for (i = 0; i<m_x; i++){
-		stroke(123);
-		line(0, i*((windowHeight-bottombar-topbar)/m_x)+topbar, windowWidth, i*((windowHeight-bottombar-topbar)/m_x)+topbar);
-	}
-	noStroke();
 }
