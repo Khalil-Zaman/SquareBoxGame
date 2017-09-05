@@ -15,10 +15,11 @@
 
 <div style="position:absolute; bottom:0px; width:100%;" class="w3-padding">
 	<div class="w3-row ">
-		<div class="w3-col l2 m2"><div class="w3-btn w3-blue" id="level-create">Level Create</div></div>
-		<div class="w3-col l2 m2"><div class="w3-btn w3-blue">Play</div></div>
-		<div class="w3-col l2 m2"><div class="w3-btn w3-blue">Print</div></div>
+		<div class="w3-col l2 m2"><div class="w3-btn w3-blue" id="level-create">Create level</div></div>
+		<div class="w3-col l1 m1"><div class="w3-btn w3-blue">Play</div></div>
+		<div class="w3-col l2 m2"><div class="w3-btn w3-blue" id="print-level">Show level code</div></div>
 	</div>
+	<div class="w3-text-black w3-white w3-card w3-padding" style="display:none;" id="show-level"></div>
 </div>
 
 </body>

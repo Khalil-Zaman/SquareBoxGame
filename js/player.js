@@ -91,3 +91,7 @@ function run(){
 	draw_player();
 	move();
 }
+
+function hit(){
+	
+}
