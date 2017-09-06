@@ -38,10 +38,11 @@ function game_setup(){
 		if (level_create_play == true){
 			draw_level(level_create_array);
 		} else {
+			if (game_start == true) run();
 			draw_level(play_level());
+			draw_player();
 		}
-		if (game_start == true) run();
-		else draw_player();
+		
 	}
 }
 
@@ -57,7 +58,7 @@ function initialize_variables(){
 	topbar = bottombar;
 	player_width = windowWidth/60;
 	player_height = player_width;
-	gravity = 2;
+	gravity = -2;
 	on_blue = false;
 	
 	level_create = level_create_play = false;
@@ -68,12 +69,12 @@ function initialize_variables(){
 	unit_height = (windowHeight - bottombar - topbar) / horizontal_division;
 	
 	level = 1;
-	jump_acceleration = Math.sqrt(gravity*((unit_height*5)-player_width)*2);
+	jump_acceleration = (Math.sqrt(-gravity*((unit_height*5)-player_width)*2))+gravity;
 	suvat_s = 0;
 	suvat_u = jump_acceleration;
-	suvat_a = -gravity;
+	suvat_a = -1*gravity;
 	t = ((-2*suvat_u) - Math.sqrt((Math.pow(2*suvat_u,2) + (4*suvat_a*2*suvat_s))))/(2*suvat_a);                                                                                                                         
-	speed = (5*unit_width)/t;
+	speed = -1*(5*unit_width)/t;
 	reset();
 }
 
@@ -125,12 +126,13 @@ function draw_unit(i, l_array){
 		if (l_array[i] == 1){
 			fill(255);
 			draw_1(i);
-			if (section == 3) hit_check(Math.ceil((i % vertical_division)*unit_width), Math.floor((Math.floor(i/vertical_division)*unit_height) +  topbar), Math.floor(unit_width)+1, Math.floor(unit_height)+1, 1);
+			
+			if (section == 3) hit_check(Math.floor((i % vertical_division)*unit_width), Math.floor((Math.floor(i/vertical_division)*unit_height) +  topbar), Math.floor(unit_width+1), Math.floor(unit_height+1), 1);
 		}
 		if (l_array[i] == 2){
 			fill(255);
 			draw_2(i);	
-			if (section == 3) hit_check(Math.ceil((i % vertical_division)*unit_width), Math.floor((Math.floor(i/vertical_division)*unit_height) +  topbar), Math.floor(unit_width)+1, Math.floor(unit_height)+1, 2);
+			if (section == 3) hit_check(Math.floor((i % vertical_division)*unit_width), Math.floor((Math.floor(i/vertical_division)*unit_height) +  topbar), Math.floor(unit_width)+1, Math.floor(unit_height)+1, 2);
 		}
 	} else {
 		if (l_array[i] == 1){

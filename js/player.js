@@ -1,15 +1,6 @@
 function run(){
 	move();
-	if (on_blue == true){
-		if (x > blue_x + unit_width + 1){
-			on_blue = false;
-			if (section == 3) base = windowHeight - bottombar - player_height;
-			y = base;
-			jump = true;
-			current_acceleration = 0;
-		}
-	}
-	draw_player();
+	constant_gravity();
 }
 
 // If the player is in section 3 or 1, draw them white against the black background
@@ -72,42 +63,33 @@ function change_section(new_section){
 
 function player_jump(){
 	if (jump == false){
+		current_acceleration = jump_acceleration;
+		y -= current_acceleration;
 		jump = true;
-		y -= current_acceleration;
 	}
-	if (jump == true){
-		current_acceleration -= gravity;
-		y -= current_acceleration;
-		if (section == 3){
-			if (y > base){
-				y = base;
-				jump = false;
-				current_acceleration = jump_acceleration;
-			}
-		} else if (section == 2){
-			if (y > base){
-				y = base;
-				jump = false;
-				current_acceleration = jump_acceleration;
-			}
-		} else if (section == 1){
-			if (y > base){
-				y = base;
-				jump = false;
-				current_acceleration = jump_acceleration;
-			}
-		}
+}
+
+
+function constant_gravity(){
+	//alert("Player y: " + y + ". Player x: " + x);
+	y -= current_acceleration;
+	current_acceleration += gravity; 
+	if (y > base){
+		y = base;
+		jump = false;
+		current_acceleration = gravity;
+		//alert("Player y: " + y + ". Player x: " + x);
 	}
 }
 
 function hit_check(sx, sy, w, h, type){
+	on_blue = false;
 	if (type == 1) if (collision_detection(sx, sy, w, h)) reset();
 	if (type == 2) {
 		if (collision_detection(sx, sy, w, h) == 1 || collision_detection(sx, sy, w, h) == 3){
-			base = sy - player_height;
-			y = base;
+			y = sy - player_height;
 			jump = false;
-			current_acceleration = jump_acceleration;
+			current_acceleration = gravity;
 			on_blue = true;
 			blue_x = sx;
 			blue_y = sy;
@@ -123,19 +105,15 @@ function collision_detection(sx, sy, w, h){
 	condyb = (y + player_height >= sy && y + player_height <= sy + h);	// bottom most coordinates of player is in the obstacles y range
 	
 	if (condxl && condyb){ // top left
-		//alert("1");
 		return 1;
 	}
 	if (condxl && condyt){ // bottom left
-		alert("2. Player x: " + x + ". Player y: " + y + ". Obstacle x: " + sx + ". Obstacle y: " + sy + "\n Current Acceleration: " + current_acceleration);
 		return 2;
 	}
 	if (condxr && condyb){ // top right
-		//alert("3");
 		return 3;
 	}
 	if (condxr && condyt){ // bottom right
-		alert("4");
 		return 4;
 	}
 	
@@ -160,7 +138,7 @@ function reset(){
 	x = 0;
 	section = 3;
 	y = windowHeight-player_height-bottombar;
-	current_acceleration = jump_acceleration;
+	current_acceleration = gravity;
 	jump = false;
 	game_start = false;
 	base = windowHeight-player_height-bottombar;
