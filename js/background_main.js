@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+		
 	$('#level-create').click(function(){
 		if (level_create == false){
 			level_create = true;

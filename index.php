@@ -16,7 +16,7 @@
 
 <div style="position:absolute; top:0px; width:100%;" class="w3-padding">
 	<select class="w3-select" id="level-select" style="width:200px;">
-		<?php for ($x = 1; $x<=3; $x++){ ?>
+		<?php for ($x = 1; $x<=4; $x++){ ?>
 			<option value="<?php echo $x; ?>"><?php echo $x;?></option>
 		<?php } ?>
 	</select>
@@ -25,7 +25,7 @@
 	<div class="w3-btn w3-blue print-level">Show level code</div>
 </div>
 
-<div style="position:absolute; bottom:0px; width:100%;" class="w3-padding">
+<div style="position:absolute; bottom:0px; width:100%;" class="w3-padding screen_size_dependent">
 	<div class="w3-row ">
 		<div class="w3-col l2 m2"><div class="w3-btn w3-blue" id="level-create">Create level</div></div>
 		<div class="w3-col l2 m2"><div class="w3-btn w3-blue print-level">Show level code</div></div>
