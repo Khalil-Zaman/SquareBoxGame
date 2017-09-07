@@ -5,3 +5,27 @@ canvas:focus {outline:0;} /* remove blue outline around canvas */
 .fs {position:fixed; bottom:20px; right:20px;}
 #enter {display:block;}
 #exit {display:none;}
+
+a{text-decoration:none;}
+
+#middle{
+	margin: 0;
+	position: absolute;
+	top: 33%;
+	width:100%;
+	height:33%;
+	background-color:white;
+	text-align: center;
+	vertical-align:middle;
+}
+
+#play-btn{
+	position:relative;
+	top:28%;
+	background-color:white;
+	font-size:400%;
+	cursor:pointer;
+	border-top-color:#3366cc;
+	border-top-width:10px;
+	border-top-style:solid;
+}

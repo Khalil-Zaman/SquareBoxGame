@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Game - Homepage</title>
+<title>Game - Level Select</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/p5.js"></script>
@@ -10,13 +10,11 @@
 <body style="background-color:black;">
 
 <div id="middle">
-			
-			<a href="game.php">
-			<div id="play-btn" class="w3-btn w3-black">
-			PLAY
-			<div>
-			</a>
+<?php for ($x = 0; $x < 5; $x++){ ?>
+<div class="w3-btn w3-padding w3-grey" style="position:relative; top:20px;">Level <?php echo $x;?></div>
+<?php }?>
 </div>
+
 
 </body>
 </html>

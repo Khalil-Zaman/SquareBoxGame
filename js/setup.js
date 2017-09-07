@@ -61,11 +61,10 @@ function game_setup(){
 		if (level_create_play == true){
 			draw_level(level_create_array);
 		} else {
-			if (game_start == true) run();
 			draw_level(play_level());
-			draw_player();
 		}
-		
+		if (game_start == true) run();
+		draw_player();
 	}
 }
 
