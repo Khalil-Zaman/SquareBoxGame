@@ -1,19 +1,4 @@
 var level_create_array =[];
-var pressed = false;
-function mousePressed() {
-	if (mouse_in_canvas()){
-		if (level_create == true){
-			change_unit();
-		} else {
-			if(jump == false && game_start == true && pressed == false) player_jump();
-			if (game_start == false) { game_start = true; pressed = true; }
-		}
-	}
-}
-
-function mouseReleased() {
-  pressed = false;
-}
 
 function mouse_in_canvas(){
 	return ((mouseY < windowHeight - bottombar) && (mouseY > topbar));
@@ -29,3 +14,17 @@ function change_unit(){
 	else if (level_create_array[pos] == 2) level_create_array[pos] = 0;
 }
 
+function lines(){
+	if (level_create == true){
+		// vertical lines
+		stroke(123);
+		for (i = 0; i<vertical_division; i++){
+			line(i*unit_width, topbar, i*unit_width, windowHeight-bottombar);
+		}
+		// horizontal lines
+		for (i = 0; i<horizontal_division; i++){
+			line(0, (i*unit_height)+topbar, windowWidth, (i*unit_height)+topbar);
+		}
+		noStroke();
+	}
+}

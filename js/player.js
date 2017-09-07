@@ -3,17 +3,6 @@ function run(){
 	constant_gravity();
 }
 
-// If the player is in section 3 or 1, draw them white against the black background
-// Otherwise (in section 2) draw them black against the white background.
-function draw_player(){
-	if (section == 3 || section == 1){
-		fill(255);
-	} else if (section == 2){
-		fill(0);
-	}
-	rect(x, y, player_width, player_height);
-}
-
 function move(){
 	if(section == 3 || section == 1){
 		x += speed;
@@ -52,7 +41,7 @@ function change_section(new_section){
 		x -= player_width;
 		section = 2;
 		base = windowHeight-player_height-bottombar - (((windowHeight-bottombar-topbar)/3)-1);
-	}
+	} else 
 	if (new_section == 1){
 		y -= (((windowHeight-(bottombar+topbar))/3)-1);
 		x = 0;
@@ -84,15 +73,20 @@ function constant_gravity(){
 
 function hit_check(sx, sy, w, h, type){
 	on_blue = false;
-	if (type == 1) if (collision_detection(sx, sy, w, h)) reset();
-	if (type == 2) {
+	if (type == 1) {
+		if (collision_detection(sx, sy, w, h)) reset();
+	} else if (type == 2) {
 		if (collision_detection(sx, sy, w, h) == 1 || collision_detection(sx, sy, w, h) == 3){
-			y = sy - player_height;
-			jump = false;
-			current_acceleration = gravity;
-			on_blue = true;
-			blue_x = sx;
-			blue_y = sy;
+			if (current_acceleration <= 0){
+				y = sy - player_height;
+				jump = false;
+				current_acceleration = gravity;
+				on_blue = true;
+				blue_x = sx;
+				blue_y = sy;
+			} else {
+				reset();
+			}
 		}
 	}
 }
