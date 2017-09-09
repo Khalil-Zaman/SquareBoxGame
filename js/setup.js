@@ -21,7 +21,7 @@ function initialize_variables(){
 	topbar = bottombar;
 	player_width = windowWidth/60;
 	player_height = player_width;
-	gravity = -2;
+	gravity = -1.5;
 	on_blue = false;
 	
 	level_create = level_create_play = false;
@@ -40,7 +40,7 @@ function initialize_variables(){
 	suvat_u = jump_acceleration;
 	suvat_a = -1*gravity;
 	t = ((-2*suvat_u) - Math.sqrt((Math.pow(2*suvat_u,2) + (4*suvat_a*2*suvat_s))))/(2*suvat_a);                                                                                                                         
-	speed = -1*(5*unit_width)/t;
+	speed = -1*(3*unit_width)/t;
 	reset();
 }
 
