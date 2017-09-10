@@ -5,9 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/p5.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/w3-css.css">
 <link rel="stylesheet" href="css/main.css">
-<body style="background-color:black;">
+
+<script src="js/main.js"></script>
+<script src="js/player.js"></script>
+<script src="js/background_main.js"></script>
+<script src="js/level_create.js"></script>
+<script src="js/levels.js"></script>
+<script src="js/setup.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/main_menu.js"></script>
+<script src="js/level_select.js"></script>
+<script src="js/user_inputs.js"></script>
+
+<!--<body style="background-color:black;">
 
 <div id="middle">
 			
@@ -16,7 +28,7 @@
 			PLAY
 			<div>
 			</a>
-</div>
+</div>-->
 
 </body>
 </html>

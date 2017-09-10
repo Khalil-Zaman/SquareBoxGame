@@ -10,11 +10,17 @@ $(document).ready(function(){
 				}
 			}
 			$(this).html('Play level');
+			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
+			topbar = bottombar;
+			topbar_bottombar_dependent();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
 			reset();
 			$(this).html('Create level');
+			bottombar = topbar = 0;
+			topbar_bottombar_dependent();
+			reset();
 		}
 	});
 	
@@ -50,11 +56,17 @@ $(document).ready(function(){
 			level_create = true;
 			level_create_array = play_level();
 			$(this).html('Play level');
+			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
+			topbar = bottombar;
+			topbar_bottombar_dependent();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
 			reset();
 			$(this).html('Edit level');
+			bottombar = topbar = 0;
+			topbar_bottombar_dependent();
+			reset();
 		}
 	});
 	

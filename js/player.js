@@ -31,6 +31,11 @@ function transition_sections(){
 		if (difference <= 0){
 			change_section(1);
 		}
+	} else if (section == 1 && x > windowWidth){
+		screen = 3;
+		section = 3;
+		base = windowHeight-player_height-bottombar;
+		reset();
 	}
 }
 
@@ -129,11 +134,13 @@ function collision_detection(sx, sy, w, h){
 }
 
 function reset(){
-	x = 0;
-	section = 3;
-	y = windowHeight-player_height-bottombar;
+	if (section == 2){
+		x = windowWidth - player_width;
+	} else {
+		x = 0;
+	}
+	y = base;
 	current_acceleration = gravity;
 	jump = false;
 	game_start = false;
-	base = windowHeight-player_height-bottombar;
 }
