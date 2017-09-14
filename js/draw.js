@@ -6,7 +6,13 @@ function draw_player(){
 	} else if (section == 2){
 		fill(0);
 	}
-	rect(x, y, player_width, player_height);
+	push();
+	translate(x+player_width/2, y+player_height/2);
+	if (jump == true) rotate(1.5*x);
+	rectMode(RADIUS);
+	rect(0, 0, player_width/2, player_height/2);
+	pop();
+	rectMode(CORNER);
 }
 
 function draw_level(l_array = []){
