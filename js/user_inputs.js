@@ -14,7 +14,16 @@ function keyPressed() {
 var pressed = false;
 function mousePressed() {
 	if (mouse_in_canvas()){
-		if (screen == 1){
+		if(mouse_in_back_btn() && backscreen.length > 0){
+			screen = backscreen[backscreen.length - 1];
+			section = 3;
+			base = windowHeight-player_height-bottombar;
+			reset();
+			if (backscreen.length > 0){
+				backscreen.length -= 1;
+			}
+		}
+		else if (screen == 1){
 			screen1();
 		} else if (screen == 3){
 			screen3();
@@ -35,10 +44,12 @@ function mouseReleased() {
 }
 
 function screen1(){
+	backscreen.push(screen);
 	screen = 3;
 }
 
 function screen3(){
+	backscreen.push(screen);
 	width = Math.floor(windowWidth/7);
 	height = Math.floor(windowHeight/7);
 	box_dimension = width;

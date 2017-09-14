@@ -48,6 +48,18 @@ function draw_unit(i, l_array){
 			rect(x1, y1, w, h);
 			fill(65, 105, 225);
 			rect(x1, y1, w, Math.floor(unit_height/3)+1);
+		} else if (l_array[i] == 3) {
+			if (i >= sect_1_i && i < sect_3_i){
+				fill(0);
+				if (section==2) hit_check(x1, y1, w, h, 3);
+			} else {
+				fill(255);
+				if (section == 1) hit_check(x1, y1, w, h, 3);
+				if (section == 3) hit_check(x1, y1, w, h, 3);
+			}
+			rect(x1, y1, w, h);
+			fill(65, 105, 225);
+			rect(x1, y1+h-(Math.floor(unit_height/3)+1), w, Math.floor(unit_height/3)+1);
 		}
 	}
 }

@@ -18,7 +18,8 @@
 <script src="js/main_menu.js"></script>
 <script src="js/level_select.js"></script>
 <script src="js/user_inputs.js"></script>
-
+<body>
+<!--<div id="messages"></div>-->
 <!--<body style="background-color:black;">
 
 <div id="middle">

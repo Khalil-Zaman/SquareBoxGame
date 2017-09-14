@@ -1,5 +1,5 @@
 p5.disableFriendlyErrors = true;
-screen = 1; 
+var screen = 1, backscreen = [];
 
 function setup() {
 	createCanvas(windowWidth,windowHeight)
@@ -18,6 +18,23 @@ function draw() {
 	if (screen == 1) { main_menu_setup(); }
 	else if (screen == 3){	blue_levels(); }
 	else if (screen == 4){	game_setup(); }
-	//var fps = frameRate();
-	//$('#frame-rate').html(fps.toFixed(2));
+	back_btn();
+}
+
+function back_btn(){
+	if( backscreen.length > 0){
+		fill(123);
+		stroke(255);
+		rect(5,5,30,30);
+		fill(0);
+		line(10,20,30,20);
+		line(10,20,20,10);
+		line(10,20,20,30);
+		noStroke();
+	}
+}
+
+function mouse_in_back_btn(){
+	if (mouseX >= 5 && mouseX <= 30 && mouseY >= 5 && mouseY <= 30) return true;
+	return false;
 }

@@ -22,12 +22,12 @@
 <body>
 
 <div style="position:absolute; top:0px; width:100%;" class="w3-padding">
-	<select class="w3-select" id="level-select" style="width:200px;">
+	<!--<select class="w3-select" id="level-select" style="width:200px;">
 		<?php for ($x = 1; $x<=5; $x++){ ?>
 			<option value="<?php echo $x; ?>"><?php echo $x;?></option>
 		<?php } ?>
 	</select>
-	<div class="w3-btn w3-blue" id="play">Play</div>
+	<div class="w3-btn w3-blue" id="play">Play</div>-->
 	<div class="w3-btn w3-blue" id="edit-level">Edit level</div>
 	<div class="w3-btn w3-blue print-level">Show level code</div>
 	<div id="frame-rate"></div>

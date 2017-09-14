@@ -57,8 +57,15 @@ function change_section(new_section){
 
 function player_jump(){
 	if (jump == false){
-		current_acceleration = jump_acceleration;
-		y -= current_acceleration;
+		if (blue_base != 0){
+			current_acceleration = -jump_acceleration;
+			y -= current_acceleration;
+			blue_base = 0;
+			bottom_blue = false;
+		} else {
+			current_acceleration = jump_acceleration;
+			y -= current_acceleration;
+		}
 		jump = true;
 	}
 }
@@ -67,17 +74,28 @@ function player_jump(){
 function constant_gravity(){
 	//alert("Player y: " + y + ". Player x: " + x);
 	y -= current_acceleration;
-	current_acceleration += gravity; 
-	if (y > base){
-		y = base;
-		jump = false;
-		current_acceleration = gravity;
-		//alert("Player y: " + y + ". Player x: " + x);
+	jump = true;
+	if (bottom_blue == true) {
+		current_acceleration -= gravity;
+		if (y < blue_base){
+			y = blue_base;
+			jump = false;
+			current_acceleration = -1*gravity;
+		}
+	} else {
+		current_acceleration += gravity;
+		if (y > base){
+			if (blue_base != 0) blue_base = 0;
+			y = base;
+			jump = false;
+			current_acceleration = gravity;
+		}
 	}
 }
-
+var bottom_blue = false;
+var blue_base = 0;
 function hit_check(sx, sy, w, h, type){
-	on_blue = false;
+	bottom_blue = false;
 	if (type == 1) {
 		if (collision_detection(sx, sy, w, h)) reset();
 	} else if (type == 2) {
@@ -86,9 +104,20 @@ function hit_check(sx, sy, w, h, type){
 				y = sy - player_height;
 				jump = false;
 				current_acceleration = gravity;
-				on_blue = true;
-				blue_x = sx;
-				blue_y = sy;
+				blue_base = 0;
+			} else {
+				reset();
+			}
+		}
+	} else if (type == 3) {
+		if (collision_detection(sx, sy, w, h) == 2 || collision_detection(sx, sy, w, h) == 4){	
+			//alert(current_acceleration + " " + gravity);
+			if (current_acceleration > 0 || blue_base != 0){
+				jump = false;
+				bottom_blue = true;
+				blue_base = sy + h;
+				y = blue_base;
+				current_acceleration = -1*gravity;
 			} else {
 				reset();
 			}
@@ -143,4 +172,6 @@ function reset(){
 	current_acceleration = gravity;
 	jump = false;
 	game_start = false;
+	blue_base = 0;
+	bottom_blue = false;
 }

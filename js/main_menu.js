@@ -46,15 +46,6 @@ function main_menu_background(){
 }
 
 function main_menu_play_btn(){
-	/*fill(0);
-	play_btn_width = (windowWidth/45)*14;
-	play_btn_height = ((windowHeight-bottombar-topbar)/30)*6;
-	x1 = windowWidth/2 - play_btn_width/2;
-	y1 = windowHeight/2 - play_btn_height/2;
-	rect(x1, y1, play_btn_width, play_btn_height/2);
-	fill(255);
-	rect(x1, y1 + play_btn_height/2, play_btn_width, play_btn_height/2);
-	textSize(play_btn_height);*/
 	fill(0);
 	textSize((windowHeight-topbar-bottombar)/3);
 	textAlign(CENTER, CENTER);

@@ -4,8 +4,7 @@ var speed;
 var x, y;
 var gravity;
 var current_acceleration, jump_acceleration;
-var jump, base, on_blue;
-var blue_x, blue_y;
+var jump, base;
 
 var level_create, level_create_play;
 var horizontal_division, vertical_division;
@@ -17,10 +16,10 @@ var game_start, level;
 var sect_1_i, sect_3_i;
 
 function initialize_game_variables(){
-	player_width = windowWidth/60;
-	player_height = player_width;
+	//player_width = windowWidth/60;
+	//player_height = player_width;
+	
 	gravity = -1.5;
-	on_blue = false;
 	section = 3;
 	
 	level_create = level_create_play = false;
@@ -38,6 +37,10 @@ function initialize_game_variables(){
 function topbar_bottombar_dependent(){
 	unit_width = windowWidth / vertical_division;
 	unit_height = (windowHeight - bottombar - topbar) / horizontal_division;
+	alert(unit_width);
+	alert(unit_height);
+	player_width = unit_width;
+	player_height = player_width;
 	base = windowHeight-player_height-bottombar;
 	jump_acceleration = (Math.sqrt(-gravity*((unit_height*5)-player_width)*2))+gravity;
 	suvat_s = 0;
@@ -61,12 +64,12 @@ function game_setup(){
 		draw_level(level_create_array);
 		lines();
 	} else {
+		if (game_start == true) run();
 		if (level_create_play == true){
 			draw_level(level_create_array);
 		} else {
 			draw_level(play_level());
 		}
-		if (game_start == true) run();
 		draw_player();
 	}
 }
