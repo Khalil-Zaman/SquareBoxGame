@@ -13,6 +13,7 @@ $(document).ready(function(){
 			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 			topbar = bottombar;
 			topbar_bottombar_dependent();
+			coin_reset();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
@@ -20,6 +21,7 @@ $(document).ready(function(){
 			$(this).html('Create level');
 			bottombar = topbar = 0;
 			topbar_bottombar_dependent();
+			coin_reset();
 			reset();
 		}
 	});
@@ -59,6 +61,7 @@ $(document).ready(function(){
 			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 			topbar = bottombar;
 			topbar_bottombar_dependent();
+			coin_reset();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
@@ -67,6 +70,7 @@ $(document).ready(function(){
 			bottombar = topbar = 0;
 			topbar_bottombar_dependent();
 			reset();
+			coin_reset();
 		}
 	});
 	

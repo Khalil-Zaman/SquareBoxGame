@@ -72,7 +72,6 @@ function player_jump(){
 
 
 function constant_gravity(){
-	//alert("Player y: " + y + ". Player x: " + x);
 	y -= current_acceleration;
 	jump = true;
 	if (bottom_blue == true) {
@@ -97,9 +96,9 @@ var blue_base = 0;
 function hit_check(sx, sy, w, h, type){
 	bottom_blue = false;
 	if (type == 1) {
-		if (collision_detection(sx, sy, w, h)) reset();
+		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height)) reset();
 	} else if (type == 2) {
-		if (collision_detection(sx, sy, w, h) == 1 || collision_detection(sx, sy, w, h) == 3){
+		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 1 || collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 3){
 			if (current_acceleration <= 0){
 				y = sy - player_height;
 				jump = false;
@@ -110,8 +109,7 @@ function hit_check(sx, sy, w, h, type){
 			}
 		}
 	} else if (type == 3) {
-		if (collision_detection(sx, sy, w, h) == 2 || collision_detection(sx, sy, w, h) == 4){	
-			//alert(current_acceleration + " " + gravity);
+		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 2 || collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 4){
 			if (current_acceleration > 0 || blue_base != 0){
 				jump = false;
 				bottom_blue = true;
@@ -122,10 +120,14 @@ function hit_check(sx, sy, w, h, type){
 				reset();
 			}
 		}
+	} else if (type == 4) {
+		if (collision_detection(x, y, player_width, player_height, sx, sy, w, h)) {
+			coins[section] = 0;
+		};
 	}
 }
 
-function collision_detection(sx, sy, w, h){
+function collision_detection(sx, sy, w, h, x, y, player_width, player_height){
 	condxl = (x >= sx && x <= sx + w); 									// left most x coordinates of player is in the obstacles x range
 	condxr = (x + player_width >= sx && x + player_width <= sx + w);	// right most x coordinates of player is in the obstacles x range
 	

@@ -3,8 +3,8 @@
 <title>Game</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="js/p5.js"></script>
-<script src="js/jquery-3.2.1.js"></script>
+<script src="js/libraries/p5.js"></script>
+<script src="js/libraries/jquery-3.2.1.js"></script>
 <link rel="stylesheet" href="css/w3-css.css">
 <link rel="stylesheet" href="css/main.css">
 
@@ -18,16 +18,17 @@
 <script src="js/main_menu.js"></script>
 <script src="js/level_select.js"></script>
 <script src="js/user_inputs.js"></script>
+<script src="js/rewards.js"></script>
 
 <body>
 
 <div style="position:absolute; top:0px; width:100%;" class="w3-padding">
-	<!--<select class="w3-select" id="level-select" style="width:200px;">
+	<select class="w3-select" id="level-select" style="width:200px;">
 		<?php for ($x = 1; $x<=5; $x++){ ?>
 			<option value="<?php echo $x; ?>"><?php echo $x;?></option>
 		<?php } ?>
 	</select>
-	<div class="w3-btn w3-blue" id="play">Play</div>-->
+	<div class="w3-btn w3-blue" id="play">Play</div>
 	<div class="w3-btn w3-blue" id="edit-level">Edit level</div>
 	<div class="w3-btn w3-blue print-level">Show level code</div>
 	<div id="frame-rate"></div>

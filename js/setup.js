@@ -37,8 +37,6 @@ function initialize_game_variables(){
 function topbar_bottombar_dependent(){
 	unit_width = windowWidth / vertical_division;
 	unit_height = (windowHeight - bottombar - topbar) / horizontal_division;
-	alert(unit_width);
-	alert(unit_height);
 	player_width = unit_width;
 	player_height = player_width;
 	base = windowHeight-player_height-bottombar;
@@ -69,6 +67,7 @@ function game_setup(){
 			draw_level(level_create_array);
 		} else {
 			draw_level(play_level());
+			fade_other_sections();
 		}
 		draw_player();
 	}

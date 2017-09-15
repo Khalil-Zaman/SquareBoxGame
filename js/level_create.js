@@ -12,7 +12,8 @@ function change_unit(){
 	if (level_create_array[pos] == 0) level_create_array[pos] = 1;
 	else if (level_create_array[pos] == 1) level_create_array[pos] = 2;
 	else if (level_create_array[pos] == 2) level_create_array[pos] = 3;
-	else if (level_create_array[pos] == 3) level_create_array[pos] = 0;
+	else if (level_create_array[pos] == 3) level_create_array[pos] = 4;
+	else if (level_create_array[pos] == 4) level_create_array[pos] = 0;
 }
 
 function lines(){
