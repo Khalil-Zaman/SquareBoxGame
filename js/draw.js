@@ -1,14 +1,17 @@
+rotate_counter = 0;
 function draw_player(){
 // If the player is in section 3 or 1, draw them white against the black background
 // Otherwise (in section 2) draw them black against the white background.
 	if (section == 3 || section == 1){
-		fill(255);
+		fill(255, 255, 26);
+		
+		fill(255, 204, 0);
 	} else if (section == 2){
-		fill(0);
+		fill(255, 204, 0);
 	}
 	push();
-	translate(x+player_width/2, y+player_height/2);
-	if (jump == true) rotate(1.5*x);
+	translate(x+player_width/2, Math.floor(y+(player_height/2)));
+	if (jump == true) {rotate(rotate_counter); rotate_counter+=0.3;}
 	rectMode(RADIUS);
 	rect(0, 0, player_width/2, player_height/2);
 	pop();
@@ -107,5 +110,19 @@ function fade_other_sections(){
 	} else if (section == 2){
 		fill(123, 123, 123, 123);
 		rect(0, 0, windowWidth, Math.ceil(windowHeight/3));
+	}
+}
+
+function back_btn(){
+	if( backscreen.length > 0){
+		fill(123);
+		stroke(255);
+		rect(5,5,30,30);
+		fill(0);
+		strokeWeight(1);
+		line(10,20,30,20);
+		line(10,20,20,10);
+		line(10,20,20,30);
+		noStroke();
 	}
 }

@@ -9,7 +9,6 @@ function move(){
 	} else if (section == 2){
 		x -= speed;
 	}
-	if (jump == true) player_jump();
 	transition_sections();
 }
 
@@ -32,10 +31,11 @@ function transition_sections(){
 			change_section(1);
 		}
 	} else if (section == 1 && x > windowWidth){
-		screen = 3;
+		level_completed = true;
+		/*screen = 3;
 		section = 3;
 		base = windowHeight-player_height-bottombar;
-		reset();
+		reset();*/
 	}
 }
 

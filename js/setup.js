@@ -45,7 +45,7 @@ function topbar_bottombar_dependent(){
 	suvat_u = jump_acceleration;
 	suvat_a = -1*gravity;
 	t = ((-2*suvat_u) - Math.sqrt((Math.pow(2*suvat_u,2) + (4*suvat_a*2*suvat_s))))/(2*suvat_a);                                                                                                                         
-	speed = -1*(4*unit_width)/t;
+	speed = 1*(-1*(4*unit_width)/t);
 }
 
 function background_setup(){
@@ -54,7 +54,12 @@ function background_setup(){
 	fill(157);
 	rect(0, 0, windowWidth, topbar);
 	fill(255);
-	rect(0, (windowHeight-bottombar-topbar)/3 + topbar, windowWidth, (windowHeight-bottombar - topbar)/3);
+	rect(0, Math.ceil((windowHeight-bottombar-topbar)/3 + topbar), windowWidth, Math.ceil((windowHeight-bottombar - topbar)/3));
+	stroke(123, 123, 123)
+	strokeWeight(2);
+	line(0, Math.ceil((windowHeight-bottombar-topbar)/3 + topbar), windowWidth, Math.ceil((windowHeight-bottombar - topbar)/3));
+	line(0, Math.ceil(2*(windowHeight-bottombar-topbar)/3 + topbar), windowWidth, Math.ceil(2*(windowHeight-bottombar - topbar)/3));
+	noStroke();
 }
 
 function game_setup(){
@@ -67,8 +72,14 @@ function game_setup(){
 			draw_level(level_create_array);
 		} else {
 			draw_level(play_level());
+			if (level == 1){
+				tutorial();
+			}
 			fade_other_sections();
 		}
 		draw_player();
+		if (level_completed == true){
+			level_complete();
+		}
 	}
 }
