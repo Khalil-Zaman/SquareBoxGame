@@ -172,10 +172,15 @@ function reset(){
 	} else {
 		x = 0;
 	}
+	deaths++;
 	y = base;
 	current_acceleration = gravity;
 	jump = false;
 	game_start = false;
 	blue_base = 0;
 	bottom_blue = false;
+}
+
+function reset_death(){
+	deaths = 0;
 }

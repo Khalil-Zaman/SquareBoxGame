@@ -5,6 +5,7 @@ var x, y;
 var gravity;
 var current_acceleration, jump_acceleration;
 var jump, base;
+var deaths;
 
 var level_create, level_create_play;
 var horizontal_division, vertical_division;

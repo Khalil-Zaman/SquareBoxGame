@@ -36,25 +36,29 @@ function tutorial(){
 		tutorial_section_2_beginning();
 		tutorial_tips[tutorial_counter] = 1;
 	} else if (tutorial_counter == 3 && section == 2 && x < windowWidth/2 + unit_width/2 + 2*player_width - speed){
-		tutorial_collect_coins();
+		tutorial_collect_stars();
 		tutorial_tips[tutorial_counter] = 1;
 	} else if (tutorial_counter == 4 && section == 1 && x >= 0){
-		running = false;
-		textAlign(LEFT, CENTER);
-		autosizetext();
-		fill(255);
-		t = "You're now up here! You start from the left side again now in this part.\nClick to continue";
-		text(t, player_width/4, 2*(windowWidth/55));
+		tutorial_section_1();
 		tutorial_tips[tutorial_counter] = 1;
 	}
 }
 
-function tutorial_collect_coins(){
+function tutorial_section_1(){
+	running = false;
+	textAlign(LEFT, CENTER);
+	autosizetext();
+	fill(255);
+	t = "You're now up here! You start from the left side again now in this part.\nClick to continue";
+	text(t, player_width/4, 2*(windowWidth/55)  + 25);
+}
+
+function tutorial_collect_stars(){
 	running = false;
 	textAlign(CENTER, CENTER);
 	autosizetext();
 	fill(0);
-	t = "Try and collect as many of the spinning coins as you can! \nClick to continue";
+	t = "Collect the spinning stars to unlock more levels! \nClick to continue";
 	text(t, windowWidth/2, sect2_top_y + 3*(windowWidth/55));
 }
 

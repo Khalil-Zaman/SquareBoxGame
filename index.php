@@ -18,9 +18,9 @@
 <script src="js/main_menu.js"></script>
 <script src="js/level_select.js"></script>
 <script src="js/user_inputs.js"></script>
-<script src="js/coins.js"></script>
+<script src="js/stars.js"></script>
 <script src="js/tutorials.js"></script>
-<script src="js/level_complete.js"></script>
+<script src="js/complete.js"></script>
 <body>
 <!--<div id="messages" style="position:fixed; left:100px; background-color:white">M</div>-->
 <!--<body style="background-color:black;">

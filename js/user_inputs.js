@@ -48,7 +48,7 @@ function screen4(){
 			if (tutorial_counter == 1) can_jump = true;
 			if (tutorial_counter == 2) can_jump = false;
 			if (tutorial_counter == 3) can_jump = false;
-			if (tutorial_counter == 4) can_jump = false;
+			if (tutorial_counter == 4) {can_jump = false; tutorial_running = false;}
 			tutorial_counter++;
 		}
 		if (can_jump) player_jump();
@@ -103,7 +103,9 @@ function screen3(){
 			level_no++;
 		}
 	}
-	reward_initiliazation();
+	initalize_complete_variables();
+	initiliaze_star_variables();
+	reset_death();
 }
 
 function mouse_in_back_btn(){
