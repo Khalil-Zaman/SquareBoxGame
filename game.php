@@ -18,7 +18,7 @@
 <script src="js/main_menu.js"></script>
 <script src="js/level_select.js"></script>
 <script src="js/user_inputs.js"></script>
-<script src="js/rewards.js"></script>
+<script src="js/coins.js"></script>
 
 <body>
 

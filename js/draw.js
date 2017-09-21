@@ -4,7 +4,6 @@ function draw_player(){
 // Otherwise (in section 2) draw them black against the white background.
 	if (section == 3 || section == 1){
 		fill(255, 255, 26);
-		
 		fill(255, 204, 0);
 	} else if (section == 2){
 		fill(255, 204, 0);
@@ -30,12 +29,12 @@ function draw_level(l_array = []){
 
 function draw_unit(i, l_array){
 	if (l_array[i] != 0){
-	
+
 		x1 = Math.ceil((i % vertical_division)*unit_width);
 		y1 = Math.floor((Math.floor(i/vertical_division)*unit_height) +  topbar)
 		w = Math.floor(unit_width)+1;
 		h = Math.floor(unit_height)+1;
-		
+
 		if (l_array[i] == 1){
 			if (i >= sect_1_i && i < sect_3_i){
 				fill(0);
@@ -70,7 +69,7 @@ function draw_unit(i, l_array){
 			rect(x1, y1, w, h);
 			fill(65, 105, 225);
 			rect(x1, y1+h-(Math.floor(unit_height/3)+1), w, Math.floor(unit_height/3)+1);
-		} else if (l_array[i] == 4) { / *REWARD*/
+		} else if (l_array[i] == 4) { /*REWARD*/
 			draw_star = true;
 			if (i >= sect_3_i) {
 				if (coins[3] == 0) draw_star = false;
@@ -99,7 +98,7 @@ function draw_unit(i, l_array){
 				rectMode(CORNER);
 			}
 		}
-	
+
 	}
 }
 

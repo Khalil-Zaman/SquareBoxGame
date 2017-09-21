@@ -1,22 +1,4 @@
-var coins;
-var coin_rotation = 1;
-var level_completed;
-
-function reward_initiliazation(){
-	coins = [0, 1, 1, 1];
-	level_completed = false;
-}
-
-function coin_reset(){
-	coins = [0, 1, 1, 1];
-}
-
 function level_complete(){
-	//push();
-	//translate(windowWidth/2, windowHeight/2);
-	//rectMode(RADIUS);
-	//pop();
-	
 	level_complete_box();
 	level_complete_text();
 }
@@ -47,5 +29,5 @@ function level_complete_text(){
 	congrats = "Level " + level + " completed!"
 	textAlign(CENTER);
 	fill(0);
-	text(congrats, windowWidth/2, windowHeight/2 - 25); 
+	text(congrats, windowWidth/2, windowHeight/2 - 25);
 }

@@ -18,14 +18,15 @@
 <script src="js/main_menu.js"></script>
 <script src="js/level_select.js"></script>
 <script src="js/user_inputs.js"></script>
-<script src="js/rewards.js"></script>
+<script src="js/coins.js"></script>
 <script src="js/tutorials.js"></script>
+<script src="js/level_complete.js"></script>
 <body>
 <!--<div id="messages" style="position:fixed; left:100px; background-color:white">M</div>-->
 <!--<body style="background-color:black;">
 
 <div id="middle">
-			
+
 			<a href="game.php">
 			<div id="play-btn" class="w3-btn w3-black">
 			PLAY

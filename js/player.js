@@ -4,12 +4,14 @@ function run(){
 }
 
 function move(){
-	if(section == 3 || section == 1){
-		x += speed;
-	} else if (section == 2){
-		x -= speed;
+	if (running){
+		if(section == 3 || section == 1){
+			x += speed;
+		} else if (section == 2){
+			x -= speed;
+		}
+		transition_sections();
 	}
-	transition_sections();
 }
 
 function transition_sections(){
@@ -18,6 +20,7 @@ function transition_sections(){
 	if (x+player_width>windowWidth && section == 3){
 		difference = (x+player_width) - windowWidth;
 		fill(0);
+		fill(255, 204, 0);
 		rect(windowWidth - difference + speed, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference >= player_width){
 			change_section(2);
@@ -26,16 +29,13 @@ function transition_sections(){
 	} else if (x<0 && section == 2){
 		difference = (x+player_width) ;
 		fill(255);
+		fill(255, 204, 0);
 		rect(-difference, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference <= 0){
 			change_section(1);
 		}
 	} else if (section == 1 && x > windowWidth){
 		level_completed = true;
-		/*screen = 3;
-		section = 3;
-		base = windowHeight-player_height-bottombar;
-		reset();*/
 	}
 }
 
@@ -46,7 +46,7 @@ function change_section(new_section){
 		x -= player_width;
 		section = 2;
 		base = windowHeight-player_height-bottombar - (((windowHeight-bottombar-topbar)/3)-1);
-	} else 
+	} else
 	if (new_section == 1){
 		y -= (((windowHeight-(bottombar+topbar))/3)-1);
 		x = 0;
@@ -56,17 +56,19 @@ function change_section(new_section){
 }
 
 function player_jump(){
-	if (jump == false){
-		if (blue_base != 0){
-			current_acceleration = -jump_acceleration;
-			y -= current_acceleration;
-			blue_base = 0;
-			bottom_blue = false;
-		} else {
-			current_acceleration = jump_acceleration;
-			y -= current_acceleration;
+	if (running){
+		if (jump == false){
+			if (blue_base != 0){
+				current_acceleration = -jump_acceleration;
+				y -= current_acceleration;
+				blue_base = 0;
+				bottom_blue = false;
+			} else {
+				current_acceleration = jump_acceleration;
+				y -= current_acceleration;
+			}
+			jump = true;
 		}
-		jump = true;
 	}
 }
 
@@ -76,14 +78,14 @@ function constant_gravity(){
 	jump = true;
 	if (bottom_blue == true) {
 		current_acceleration -= gravity;
-		if (y < blue_base){
+		if (y <= blue_base){
 			y = blue_base;
 			jump = false;
 			current_acceleration = -1*gravity;
 		}
 	} else {
 		current_acceleration += gravity;
-		if (y > base){
+		if (y >= base){
 			if (blue_base != 0) blue_base = 0;
 			y = base;
 			jump = false;
@@ -130,10 +132,10 @@ function hit_check(sx, sy, w, h, type){
 function collision_detection(sx, sy, w, h, x, y, player_width, player_height){
 	condxl = (x >= sx && x <= sx + w); 									// left most x coordinates of player is in the obstacles x range
 	condxr = (x + player_width >= sx && x + player_width <= sx + w);	// right most x coordinates of player is in the obstacles x range
-	
+
 	condyt = (y >= sy && y <= sy + h);									// top most coordinates of player is in the obstacles y range
 	condyb = (y + player_height >= sy && y + player_height <= sy + h);	// bottom most coordinates of player is in the obstacles y range
-	
+
 	if (condxl && condyb){ // top left
 		return 1;
 	}
@@ -146,21 +148,21 @@ function collision_detection(sx, sy, w, h, x, y, player_width, player_height){
 	if (condxr && condyt){ // bottom right
 		return 4;
 	}
-	
+
 	// Obstacle is within player
-	condxl = (sx >= x && sx <= x + player_width); 	
+	condxl = (sx >= x && sx <= x + player_width);
 	condxr = (sx + w >= x && sx + w <= x + player_width);
-	
-	condyt = (sy >= y && sy <= y + player_height);									
+
+	condyt = (sy >= y && sy <= y + player_height);
 	condyb = (sy + h >= y && sy + h <= y + player_height);
-	
+
 	if (condxl && (condyb || condyt)){
 		return true;
 	}
 	if (condxr && (condyb || condyt)){
 		return true;
 	}
-	
+
 	return 0;
 }
 
