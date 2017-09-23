@@ -143,23 +143,23 @@ function level_complete_stars(){
 				if (star_counter_1 < unit_width/2){
 					star_increase += star_acceleration;
 					star_counter_1 += star_increase;
-					if (star_counter_1 >= unit_width/2) { star_increase = 0; star_counter_1 = unit_width/2 };
+					if (star_counter_1 >= unit_width/2) { star_increase = 0; star_counter_1 = Math.ceil(unit_width/2); };
 				} else {
 					if (star_counter_2 < unit_width/2){
 						star_increase += star_acceleration;
 						star_counter_2 += star_increase;
-						if (star_counter_2 >= unit_width/2) { star_increase = 0; star_counter_2 = unit_width/2}
+						if (star_counter_2 >= unit_width/2) { star_increase = 0; star_counter_2 = Math.ceil(unit_width/2);}
 					} else {
 						if (star_counter_3 < unit_width/2){
 							star_increase += star_acceleration;
 							star_counter_3 += star_increase;
-							if (star_counter_3 >= unit_width/2) { star_counter_3 = unit_width/2;}
+							if (star_counter_3 >= unit_width/2) { star_counter_3 = Math.ceil(unit_width/2);}
 						}
 					}
 				}
-				if (sum_stars == 0) if (star_counter_3 >= unit_width/2) stars_animation_finished = true;
-				if (sum_stars == 1) if (star_counter_2 >= unit_width/2) stars_animation_finished = true;
-				if (sum_stars == 2) if (star_counter_1 >= unit_width/2) stars_animation_finished = true;
+				if (sum_stars == 3 && star_counter_3 >= unit_width/2) stars_animation_finished = true;
+				if (sum_stars == 2 && star_counter_2 >= unit_width/2) stars_animation_finished = true;
+				if (sum_stars == 1 && star_counter_1 >= unit_width/2) stars_animation_finished = true;
 			}
 		} else {
 			stars_animation_finished = true;
@@ -190,7 +190,7 @@ function stars_added_animation(x1, y1, star_width){
 
 function level_complete_deaths(){
 	fill(0);
-	level_complete_t = "No deaths: "
+	level_complete_t = "Number of deaths: "
 	textAlign(LEFT, CENTER);
 	text(level_complete_t, windowWidth/2 - unit_width*9, windowHeight/2);
 	if (stars_animation_finished) {
@@ -207,8 +207,14 @@ function level_complete_deaths(){
 		if(death_fade > 255) death_fade = 255;
 		if (death_show_text < windowWidth/35) death_show_text = windowWidth/35;
 		textAlign(CENTER, CENTER);
-		text(str(deaths), windowWidth/2 +unit_width*4, windowHeight/2);
+		text(deaths, windowWidth/2 +unit_width*4, windowHeight/2);
 		if (death_show_text == windowWidth/35 && death_fade == 255) death_animation_finished = true;
+		if (death_animation_finished == true && deaths != 0){
+			 txt ="Collect all three stars without dying to unlock bonus levels";
+			 if (death_show_text/3 > 12) textSize(death_show_text/3);
+			 else textSize(12);
+			 text(txt, windowWidth/2, windowHeight/2 + unit_height*3);
+		}
 	}
 }
 

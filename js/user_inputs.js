@@ -116,8 +116,14 @@ function click_levels(){
 				x1 = x1 + width/2 - box_dimension/2;
 			}
 			if (mouseX > x1 && mouseX < x1+box_dimension && mouseY > y1 && mouseY < y1+box_dimension){
-				level = level_no;
-				screen = 4;
+				if (level_playable(level_no, x1, y1, box_dimension) == 0){
+					message = "You need to obtain more stars to play this level";
+				} else if (level_playable(level_no, x1, y1, box_dimension) == 1){
+					message = "You need to complete the previous level to play this level";
+				} else {
+					level = level_no;
+					screen = 4;
+				}
 			}
 			level_no++;
 		}

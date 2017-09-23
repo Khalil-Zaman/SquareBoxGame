@@ -10,8 +10,10 @@ function initialize_tutorial_variables(){
 function autosizetext(){
 	if (windowWidth/65 < 12){
 		textSize(12);
+		return 12;
 	} else {
 		textSize(windowWidth/65);
+		return windowWidth/65;
 	}
 }
 
@@ -49,7 +51,7 @@ function tutorial_section_1(){
 	textAlign(LEFT, CENTER);
 	autosizetext();
 	fill(255);
-	t = "You're now up here! You start from the left side again now in this part.\nClick to continue";
+	t = "You're now up here! You start from the left side.\nClick to continue";
 	text(t, player_width/4, 2*(windowWidth/55)  + 25);
 }
 
@@ -67,7 +69,7 @@ function tutorial_section_2_beginning(){
 	textAlign(RIGHT, CENTER);
 	autosizetext();
 	fill(0);
-	t = "You're now up here! You start from the right side in this part. \nClick to continue";
+	t = "You're now up here! You start from the right side. \nClick to continue";
 	text(t, windowWidth - player_width/4, sect2_top_y + 2*(windowWidth/55));
 }
 

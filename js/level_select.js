@@ -1,7 +1,8 @@
-var arc;
+var arc, message;
 
 function initialize_blue_variables(){
 	arc = 'BLUE';
+	message = '';
 }
 
 function blue_levels(){
@@ -46,12 +47,63 @@ function draw_levels(extras){
 			extras();
 			display_level_accomplishments(x1, y1, box_dimension, level_no);
 			textSize(box_dimension/4);
-			fill((fill_i+=255)%510);
-			text(level_no, x1+box_dimension/2, y1+box_dimension/2);
-			fill((fill_i+=255)%510);
+			if (level_playable(level_no, x1, y1, box_dimension) > 0){
+				fill((fill_i+=255)%510);
+				text(level_no, x1+box_dimension/2, y1+box_dimension/2);
+				fill((fill_i+=255)%510);
+			}
+			fill((fill_i+=255)%510);fill((fill_i+=255)%510);
 			level_no++;
 		}
 	}
+}
+
+function display_message(message){
+	autosizetext();
+	textAlign(CENTER, CENTER);
+	fill(255);
+	text(message, windowWidth/2, windowHeight/3 - 1.5*autosizetext());
+}
+
+function level_playable(level_no, x1, y1, width){
+	if (enough_stars_for_level(level_no) == false){
+		fill(123, 123, 123, 123);
+		rect(x1, y1, width, width);
+		return 0;
+	} else {
+		if (previous_level_been_completed(level_no) == false){
+			fill(123, 123, 123, 123);
+			rect(x1, y1, width, width);
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+}
+
+function previous_level_been_completed(level_number){
+	if (level_number != 1){
+		name = arc + "-LEVEL-" + (level_number - 1);
+		if ($.cookie(name) == null) return false;
+	}
+	return true;
+}
+
+function enough_stars_for_level(level_no){
+	no_total_stars = 0;
+	for (level_counter = 1; level_counter <= 9; level_counter++){
+		name = arc + "-LEVEL-" + level_counter;
+		if ($.cookie(name) != null){
+			values = $.cookie(name).split('-');
+			no_stars = parseInt(values[1]);
+			if (no_stars == 0) no_stars = 3;
+			if (no_stars == 1) no_stars = 2;
+			if (no_stars == 2) no_stars = 1;
+			no_total_stars += no_stars;
+		}
+	}
+	if (no_total_stars < level_no  && level_no != 1) return false;
+	return true;
 }
 
 function display_level_accomplishments(pos_x, pos_y, width, level_number){
