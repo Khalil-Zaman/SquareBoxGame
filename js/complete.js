@@ -75,6 +75,43 @@ function level_complete(){
 	level_complete_gold_star();
 	level_complete_options();
 	level_complete_set_cookie();
+	show_google_ad();
+}
+
+show_add = false;
+function show_google_ad(){
+	if (show_add == false){
+		ad1 = $('#ad1');
+		ad1.show();
+		ad1.css('background-color', 'white');
+		ad1.css('left', windowWidth/2 - unit_width*10);
+		ad1.css('width', unit_width*20);
+		ad1.css('height', windowHeight - ((windowHeight/2)+unit_height*10));
+		ad1.html('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>'
+													+'<!-- squareboxgame_ad1 -->'
+													+'<ins class="adsbygoogle"'
+											    +'style="display:block"'
+													+'data-ad-client="ca-pub-8679411009445717"'
+											    +'data-ad-slot="3297266049"'
+											    +'data-ad-format="auto"></ins>'
+											+'<script>'
+											+'(adsbygoogle = window.adsbygoogle || []).push({});'
+											+'</script>');
+		ad2 = $('#ad2');
+		ad2.show();
+		ad2.css('background-color', 'white');
+		ad2.css('left', windowWidth/2 - unit_width*10);
+		ad2.css('width', unit_width*20);
+		ad2.css('height', windowHeight - ((windowHeight/2)+unit_height*10));
+		ad2.html('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <!-- squareboxgame_ad2 --> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8679411009445717" data-ad-slot="2994013718" data-ad-format="auto"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>');
+	}
+	show_add = true;
+}
+
+function hide_google_ad(){
+	$('#ad1').hide();
+	$('#ad2').hide();
+	show_add = false;
 }
 
 function level_complete_set_cookie(){
@@ -209,12 +246,12 @@ function level_complete_deaths(){
 		textAlign(CENTER, CENTER);
 		text(deaths, windowWidth/2 +unit_width*4, windowHeight/2);
 		if (death_show_text == windowWidth/35 && death_fade == 255) death_animation_finished = true;
-		if (death_animation_finished == true && deaths != 0){
+		/*if (death_animation_finished == true && deaths != 0){
 			 txt ="Collect all three stars without dying to unlock bonus levels";
 			 if (death_show_text/3 > 12) textSize(death_show_text/3);
 			 else textSize(12);
 			 text(txt, windowWidth/2, windowHeight/2 + unit_height*3);
-		}
+		}*/
 	}
 }
 

@@ -16,6 +16,7 @@ function mousePressed() {
 	Screen 3: Level select from blue levels
 	Screen 4: Play a level
 	*/
+	hide_google_ad();
 	if (mouse_in_canvas()){
 		if (mouse_in_back_btn()){
 			go_back_screen();

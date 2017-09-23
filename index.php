@@ -24,7 +24,8 @@
 <script src="js/complete.js"></script>
 <script src="js/cookies.js"></script>
 <body>
-<!--<div id="messages" style="position:fixed; left:100px; background-color:white">M</div>-->
+<!--<div id="messages" style="position:fixed;"></div>-->
+<div id="ad1" style="position:fixed;"></div>
 <!--<body style="background-color:black;">
 
 <div id="middle">
@@ -37,4 +38,5 @@
 </div>-->
 
 </body>
+<div id="ad2" style="position:fixed; bottom:0;"></div>
 </html>
