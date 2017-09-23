@@ -1,5 +1,5 @@
 $(document).ready(function(){
-		
+
 	$('#level-create').click(function(){
 		if (level_create == false){
 			level_create = true;
@@ -13,7 +13,7 @@ $(document).ready(function(){
 			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 			topbar = bottombar;
 			topbar_bottombar_dependent();
-			coin_reset();
+			stars_reset();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
@@ -21,11 +21,11 @@ $(document).ready(function(){
 			$(this).html('Create level');
 			bottombar = topbar = 0;
 			topbar_bottombar_dependent();
-			coin_reset();
+			stars_reset();
 			reset();
 		}
 	});
-	
+
 	$('.print-level').click(function(){
 		if ($('#show-level').css('display')=='none'){
 			$('#show-level').html('[');
@@ -45,14 +45,14 @@ $(document).ready(function(){
 			$(this).html('Show level code');
 		}
 	});
-	
+
 	$('#play').click(function(){
 		level_create = false;
 		level_create_play = false;
 		level = $('#level-select').val();
 		reset();
 	});
-	
+
 	$('#edit-level').click(function(){
 		if (level_create == false){
 			level_create = true;
@@ -61,7 +61,7 @@ $(document).ready(function(){
 			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 			topbar = bottombar;
 			topbar_bottombar_dependent();
-			coin_reset();
+			stars_reset();
 		} else if (level_create == true){
 			level_create = false;
 			level_create_play = true;
@@ -70,8 +70,8 @@ $(document).ready(function(){
 			bottombar = topbar = 0;
 			topbar_bottombar_dependent();
 			reset();
-			coin_reset();
+			stars_reset();
 		}
 	});
-	
+
 });

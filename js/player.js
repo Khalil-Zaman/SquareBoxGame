@@ -124,7 +124,7 @@ function hit_check(sx, sy, w, h, type){
 		}
 	} else if (type == 4) {
 		if (collision_detection(x, y, player_width, player_height, sx, sy, w, h)) {
-			coins[section] = 0;
+			stars[section] = 0;
 		};
 	}
 }
@@ -183,4 +183,13 @@ function reset(){
 
 function reset_death(){
 	deaths = 0;
+}
+
+function complete_reset(){
+	section = 3;
+	base = windowHeight-player_height-bottombar;
+	reset();
+	reset_death();
+	initialize_complete_variables();
+	initialize_star_variables();
 }

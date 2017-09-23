@@ -22,7 +22,7 @@ function draw_player(){
 
 function draw_level(l_array = []){
 	// Starts from 0, from top left to bottom right
-	coin_rotation++;
+	stars_rotation++;
 	noStroke();
 	lim = l_array.length;
 	for (i = 0; i < lim; i++){
@@ -75,11 +75,11 @@ function draw_unit(i, l_array){
 		} else if (l_array[i] == 4) { /*REWARD*/
 			draw_star = true;
 			if (i >= sect_3_i) {
-				if (coins[3] == 0) draw_star = false;
+				if (stars[3] == 0) draw_star = false;
 			} else if (i < sect_1_i) {
-				if (coins[1] == 0) draw_star = false;
+				if (stars[1] == 0) draw_star = false;
 			} else  {
-				if (coins[2] == 0) draw_star = false;
+				if (stars[2] == 0) draw_star = false;
 			}
 			if (draw_star){
 				x1 = (x1+w/2);
@@ -94,7 +94,7 @@ function draw_unit(i, l_array){
 				}
 				push();
 				translate(x1, y1);
-				rotate(coin_rotation/(10));
+				rotate(stars_rotation/(10));
 				rectMode(RADIUS);
 				rect(0, 0, w/6, w/6);
 				pop();

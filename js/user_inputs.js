@@ -34,33 +34,44 @@ function mousePressed() {
 }
 
 function screen4(){
-	if (!tutorial_running){
-		if (game_start == false) { game_start = true; running = true;}
-		else if (jump == false && game_start == true) player_jump();
-	} else {
-
-		can_jump = true;
-		game_start = true;
-		running = true;
-		if (tutorial_tips[tutorial_counter] == 1){
-			//tutorial_running = false;
-			if (tutorial_counter == 0) can_jump = false;
-			if (tutorial_counter == 1) can_jump = true;
-			if (tutorial_counter == 2) can_jump = false;
-			if (tutorial_counter == 3) can_jump = false;
-			if (tutorial_counter == 4) {can_jump = false; tutorial_running = false;}
-			tutorial_counter++;
+	if (options_showing == true){
+		if (mouseY >= windowHeight/2 + unit_height*7 && mouseY <= windowHeight/2 + unit_height*9){
+			if (mouseX >= windowWidth/2 - unit_width*9 && mouseX <= windowWidth/2 - 4*unit_width){
+				complete_reset();
+			} else if (mouseX >= windowWidth/2 - 3*unit_width && mouseX <= windowWidth/2 + 3*unit_width){
+				go_back_screen();
+			} else if (mouseX >= windowWidth/2 + 4*unit_width && mouseX <= windowWidth/2 + 9*unit_width){
+				level++;
+				complete_reset();
+			}
 		}
-		if (can_jump) player_jump();
+	} else {
+		if (!tutorial_running){
+			if (game_start == false) { game_start = true; running = true;}
+			else if (jump == false && game_start == true) player_jump();
+		} else {
+
+			can_jump = true;
+			game_start = true;
+			running = true;
+			if (tutorial_tips[tutorial_counter] == 1){
+				//tutorial_running = false;
+				if (tutorial_counter == 0) can_jump = false;
+				if (tutorial_counter == 1) can_jump = true;
+				if (tutorial_counter == 2) can_jump = false;
+				if (tutorial_counter == 3) can_jump = false;
+				if (tutorial_counter == 4) {can_jump = false; tutorial_running = false;}
+				tutorial_counter++;
+			}
+			if (can_jump) player_jump();
+		}
 	}
 }
 
 function go_back_screen(){
 	if (backscreen.length > 0){
 		screen = backscreen[backscreen.length - 1];
-		section = 3;
-		base = windowHeight-player_height-bottombar;
-		reset();
+		complete_reset();
 		if (backscreen.length > 0){
 			backscreen.length -= 1;
 		}
@@ -78,12 +89,20 @@ function mouseReleased() {
 
 function screen1(){
 	backscreen.push(screen);
+	initialize_blue_variables();
 	screen = 3;
 }
 
 function screen3(){
-	initialize_tutorial_variables();
 	backscreen.push(screen);
+	initialize_tutorial_variables();
+	click_levels();
+	initialize_complete_variables();
+	initialize_star_variables();
+	reset_death();
+}
+
+function click_levels(){
 	width = Math.floor(windowWidth/7);
 	height = Math.floor(windowHeight/7);
 	box_dimension = width;
@@ -103,9 +122,6 @@ function screen3(){
 			level_no++;
 		}
 	}
-	initalize_complete_variables();
-	initiliaze_star_variables();
-	reset_death();
 }
 
 function mouse_in_back_btn(){
