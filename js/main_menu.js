@@ -1,3 +1,5 @@
+var myFont;
+
 function main_menu_setup(){
 	main_menu_background();
 	main_menu_play_btn();
@@ -11,7 +13,6 @@ function main_menu_background(){
 	rect(0, (windowHeight - Math.floor(ythird)), windowWidth,  Math.ceil(ythird));
 }
 
-var myFont;
 function preload() {
   myFont = loadFont('js/fonts/Orbitron_Medium.otf');
 }

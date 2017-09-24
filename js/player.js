@@ -6,9 +6,11 @@ function run(){
 function move(){
 	if (running){
 		if(section == 3 || section == 1){
-			x += speed;
+			if (reverse) x -= speed;
+			else x += speed;
 		} else if (section == 2){
-			x -= speed;
+			if (reverse) x += speed;
+			else x -= speed;
 		}
 		transition_sections();
 	}
@@ -126,7 +128,30 @@ function hit_check(sx, sy, w, h, type){
 		if (collision_detection(x, y, player_width, player_height, sx, sy, w, h)) {
 			stars[section] = 0;
 		};
+	} else if (type == 5) {
+		value = collision_detection(x, y, player_width, player_height, sx, sy, w, h);
+		scenario_1 = section != 2  && (value == 3 || value == 4);
+		scenario_2 = section == 2 && (value == 3 || value == 2);
+		scenario_3 = section != 2  && (value == 1 || value == 2);
+		scenario_4 = section == 2 && (value == 3 || value == 4);
+		if (value == 3 || value == 4) direction_reverse(5);
+		else if (value == 1 || value == 2) reset();
+	} else if (type == 6) {
+		value = collision_detection(x, y, player_width, player_height, sx, sy, w, h);
+		scenario_1 = section != 2  && (value == 1 || value == 2);
+		scenario_2 = section == 2 && (value == 3 || value == 4);
+		scenario_3 = section != 2  && (value == 3 || value == 4);
+		scenario_4 = section == 2 && (value == 1 || value == 2);
+		if (value == 1 || value == 2) direction_reverse(6);
+		else if (value == 3 || value == 4) reset();
 	}
+}
+
+function direction_reverse(type){
+	if (section == 2 && type ==  5) reverse = true;
+	else if (section != 2 && type == 5) reverse = false;
+	else if (section == 2 && type == 6) reverse = false;
+	else if (section != 2 && type == 6) reverse = true;
 }
 
 function collision_detection(sx, sy, w, h, x, y, player_width, player_height){
@@ -179,6 +204,7 @@ function reset(){
 	game_start = false;
 	blue_base = 0;
 	bottom_blue = false;
+	reverse = false;
 }
 
 function reset_death(){

@@ -11,8 +11,10 @@ function setup() {
 function draw() {
 	background_setup();
 	if (screen == 1) { main_menu_setup(); }
-	else if (screen == 3){	blue_levels(); complete_reset(); display_message(message); }
-	else if (screen == 4){	game_setup(); }
+	else if (screen == 2){ arc_selection_setup(); }
+	else if (screen == 3){ blue_levels(); complete_reset(); display_message(message); }
+	else if (screen == 4){ game_setup(); }
+	else if (screen == 5){ purple_levels(); }
 	back_btn();
 }
 

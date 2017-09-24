@@ -60,6 +60,7 @@ $(document).ready(function(){
 			$(this).html('Play level');
 			bottombar = (windowHeight - (((windowWidth / 45)/2)*30))/2;
 			topbar = bottombar;
+			initialize_background_variables();
 			topbar_bottombar_dependent();
 			stars_reset();
 		} else if (level_create == true){
@@ -68,6 +69,7 @@ $(document).ready(function(){
 			reset();
 			$(this).html('Edit level');
 			bottombar = topbar = 0;
+			initialize_background_variables();
 			topbar_bottombar_dependent();
 			reset();
 			stars_reset();

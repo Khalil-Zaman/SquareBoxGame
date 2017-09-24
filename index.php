@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Game - Homepage</title>
+<title>Square Box Game</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/libraries/p5.js"></script>
@@ -23,6 +23,10 @@
 <script src="js/tutorials.js"></script>
 <script src="js/complete.js"></script>
 <script src="js/cookies.js"></script>
+<script src="js/arcs.js"></script>
+<script src="js/blue.js"></script>
+<script src="js/purple.js"></script>
+
 <body>
 <!--<div id="messages" style="position:fixed;"></div>-->
 <div id="ad1" style="position:fixed;"></div>

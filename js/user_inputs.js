@@ -1,30 +1,34 @@
+/*
+Screen 1: Main main
+Screen 3: Level select from blue levels
+Screen 4: Play a level
+*/
+
 function keyPressed() {
 	if (keyCode == UP_ARROW || keyCode == 32) {
 		if (screen == 1){
 			screen1();
+		} else if (screen == 2){
+			screen2();
 		} else if (screen == 3){
 			screen3();
 		} else if (screen == 4){
 			screen4();
+		} else if (screen == 5){
+			screen3();
 		}
 	}
 }
 
 function mousePressed() {
-	/*
-	Screen 1: Main main
-	Screen 3: Level select from blue levels
-	Screen 4: Play a level
-	*/
 	hide_google_ad();
 	if (mouse_in_canvas()){
-		if (mouse_in_back_btn()){
-			go_back_screen();
-		} else if (screen == 1){
-			screen1();
-		} else if (screen == 3){
-			screen3();
-		} else if (screen == 4){
+		if (mouse_in_back_btn()) go_back_screen();
+		else if (screen == 1)	screen1();
+		else if (screen == 2) screen2();
+		else if (screen == 3)	screen3();
+		else if (screen == 5) screen3();
+		else if (screen == 4){
 			if (level_create == true){
 				change_unit();
 			} else {
@@ -34,27 +38,29 @@ function mousePressed() {
 	}
 }
 
+function screen_level_complete_options(){
+	if (mouseY >= windowHeight/2 + unit_height*7 && mouseY <= windowHeight/2 + unit_height*9){
+		if (mouseX >= windowWidth/2 - unit_width*9 && mouseX <= windowWidth/2 - 4*unit_width){
+			complete_reset();
+		} else if (mouseX >= windowWidth/2 - 3*unit_width && mouseX <= windowWidth/2 + 3*unit_width){
+			go_back_screen();
+		} else if (mouseX >= windowWidth/2 + 4*unit_width && mouseX <= windowWidth/2 + 9*unit_width){
+			level++;
+			complete_reset();
+		}
+	}
+}
+
 function screen4(){
 	if (options_showing == true){
-		if (mouseY >= windowHeight/2 + unit_height*7 && mouseY <= windowHeight/2 + unit_height*9){
-			if (mouseX >= windowWidth/2 - unit_width*9 && mouseX <= windowWidth/2 - 4*unit_width){
-				complete_reset();
-			} else if (mouseX >= windowWidth/2 - 3*unit_width && mouseX <= windowWidth/2 + 3*unit_width){
-				go_back_screen();
-			} else if (mouseX >= windowWidth/2 + 4*unit_width && mouseX <= windowWidth/2 + 9*unit_width){
-				level++;
-				complete_reset();
-			}
-		}
+		screen_level_complete_options();
 	} else {
 		if (!tutorial_running){
 			if (game_start == false) { game_start = true; running = true;}
-			else if (jump == false && game_start == true) player_jump();
+			else if (jump == false && game_start == true) player_jump(); 
 		} else {
 
 			can_jump = true;
-			game_start = true;
-			running = true;
 			if (tutorial_tips[tutorial_counter] == 1){
 				//tutorial_running = false;
 				if (tutorial_counter == 0) can_jump = false;
@@ -64,7 +70,9 @@ function screen4(){
 				if (tutorial_counter == 4) {can_jump = false; tutorial_running = false;}
 				tutorial_counter++;
 			}
-			if (can_jump) player_jump();
+			if (can_jump && game_start) player_jump();
+			game_start = true;
+			running = true;
 		}
 	}
 }
@@ -90,8 +98,13 @@ function mouseReleased() {
 
 function screen1(){
 	backscreen.push(screen);
-	initialize_blue_variables();
-	screen = 3;
+	screen = 2;
+}
+
+function screen2(){
+	backscreen.push(screen);
+	if (mouseY <= windowHeight/3) {screen = 3; initialize_blue_variables();}
+	else if (mouseY <= 2*windowHeight/3) {screen = 5; initialize_purple_variables();}
 }
 
 function screen3(){

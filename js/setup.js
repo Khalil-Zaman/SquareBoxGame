@@ -2,7 +2,7 @@ var bottombar = 0, topbar = 0;
 var player_width, player_height;
 var speed;
 var x, y;
-var gravity;
+var gravity, reverse;
 var current_acceleration, jump_acceleration;
 var jump, base;
 var deaths;
@@ -97,8 +97,8 @@ function game_setup(){
 			} else {
 				fade_other_sections();
 			}
+			draw_section_lines();
 		}
-		draw_section_lines();
 		draw_player();
 		if (level_completed == true) level_complete();
 	}

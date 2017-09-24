@@ -60,7 +60,7 @@ function tutorial_collect_stars(){
 	textAlign(CENTER, CENTER);
 	autosizetext();
 	fill(0);
-	t = "Collect the spinning stars to unlock more levels! \nClick to continue";
+	t = "Collect the spinning diamonds to unlock more levels! \nClick to continue";
 	text(t, windowWidth/2, sect2_top_y + 3*(windowWidth/55));
 }
 

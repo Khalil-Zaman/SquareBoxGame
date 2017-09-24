@@ -160,7 +160,7 @@ function level_complete_congrats(){
 function level_complete_stars(){
 	sum_stars = ((stars[1]+1)%2) + ((stars[2]+1)%2) + ((stars[3]+1)%2);
 	fill(0);
-	level_complete_t = "Stars collected: ";
+	level_complete_t = "Diamonds collected: ";
 	textAlign(LEFT, CENTER);
 	text(level_complete_t, windowWidth/2 - unit_width*9, windowHeight/2 - unit_height*3);
 	fill(0);
@@ -227,7 +227,7 @@ function stars_added_animation(x1, y1, star_width){
 
 function level_complete_deaths(){
 	fill(0);
-	level_complete_t = "Number of deaths: "
+	level_complete_t = "Number of rebirths: "
 	textAlign(LEFT, CENTER);
 	text(level_complete_t, windowWidth/2 - unit_width*9, windowHeight/2);
 	if (stars_animation_finished) {

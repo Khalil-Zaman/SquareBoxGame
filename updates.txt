@@ -1,0 +1,16 @@
+BUGS
+1. After level 9, there is a blank screen.
+UNCOMPLETED
+2. LAG
+
+UPDATES
+1. Add screen 2 where they can choose which arc they want to play
+UNCOMPLETED
+
+2. Add purple levels
+UNCOMPLETED
+
+3. Add level restart button
+4. Stop the lag!
+5. Add a tutorial for the blue levels
+6. Add a home button (replace the back button)

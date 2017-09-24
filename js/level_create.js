@@ -4,7 +4,7 @@ function mouse_in_canvas(){
 	return ((mouseY < windowHeight - bottombar) && (mouseY > topbar));
 }
 
-function change_unit(){	
+function change_unit(){
 	unit_y = Math.floor((mouseY - topbar)/unit_height);
 	unit_x = Math.floor(mouseX/unit_width);
 
@@ -13,7 +13,9 @@ function change_unit(){
 	else if (level_create_array[pos] == 1) level_create_array[pos] = 2;
 	else if (level_create_array[pos] == 2) level_create_array[pos] = 3;
 	else if (level_create_array[pos] == 3) level_create_array[pos] = 4;
-	else if (level_create_array[pos] == 4) level_create_array[pos] = 0;
+	else if (level_create_array[pos] == 4) level_create_array[pos] = 5;
+	else if (level_create_array[pos] == 5) level_create_array[pos] = 6;
+	else if (level_create_array[pos] == 6) level_create_array[pos] = 0;
 }
 
 function lines(){

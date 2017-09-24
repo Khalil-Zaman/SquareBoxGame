@@ -100,6 +100,30 @@ function draw_unit(i, l_array){
 				pop();
 				rectMode(CORNER);
 			}
+		} else if (l_array[i] == 5) {
+			if (i >= sect_1_i && i < sect_3_i){
+				fill(0);
+				if (section==2) hit_check(x1, y1, w, h, 5);
+			} else {
+				fill(255);
+				if (section == 1) hit_check(x1, y1, w, h, 5);
+				if (section == 3) hit_check(x1, y1, w, h, 5);
+			}
+			rect(x1, y1, w, h);
+			set_color_purple();
+			rect(x1+w-(Math.floor(unit_height/3)+1), y1, Math.floor(unit_height/3)+1, h);
+		}  else if (l_array[i] == 6) {
+			if (i >= sect_1_i && i < sect_3_i){
+				fill(0);
+				if (section==2) hit_check(x1, y1, w, h, 6);
+			} else {
+				fill(255);
+				if (section == 1) hit_check(x1, y1, w, h, 6);
+				if (section == 3) hit_check(x1, y1, w, h, 6);
+			}
+			rect(x1, y1, w, h);
+			set_color_purple();
+			rect(x1, y1, Math.floor(unit_height/3)+1, h);
 		}
 
 	}
