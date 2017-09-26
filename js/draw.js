@@ -11,8 +11,14 @@ function draw_player(){
 	push();
 	translate(x+player_width/2, Math.floor(y+(player_height/2)));
 	if (jump == true) {
-		if (section == 1 || section == 3) { rotate(rotate_counter); rotate_counter+=0.3; }
-		else { rotate(rotate_counter); rotate_counter -= 0.3; }
+		rotate(rotate_counter);
+		if (section == 1 || section == 3) {
+			if (reverse) rotate_counter -= 0.3;
+			else rotate_counter += 0.3;
+		} else {
+			if (reverse) rotate_counter += 0.3;
+			else rotate_counter -= 0.3;
+		}
 	}
 	rectMode(RADIUS);
 	rect(0, 0, player_width/2, player_height/2);
