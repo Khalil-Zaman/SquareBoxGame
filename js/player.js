@@ -149,8 +149,26 @@ function hit_check(sx, sy, w, h, type){
 			}
 		}
 	} else if (type == 3) {
-		if (value == 3 || value == 4) direction_reverse(6);
-		else if (value == 1 || value == 2) direction_reverse(5);
+		//if (value) reverse = !reverse;
+		if (section != 2 ){
+			if (value == 3 || value == 4){
+				reverse = true;
+				move();
+			} else if (value == 1 || value == 2){
+				reverse = false;
+				move();
+			}
+		} else {
+			if (value == 3 || value == 4){
+				reverse = false;
+				move();
+			} else if (value == 1 || value == 2){
+				reverse = true;
+				move();
+			}
+		}
+		//if (value == 3 || value == 4) { alert("CALLING HERE 6"); direction_reverse(6); }
+		//else if (value == 1 || value == 2) {alert("CALLING HERE 5"); direction_reverse(5); }
 	} else if (type == 4) {
 		if (value) {
 			stars[section] = 0;
