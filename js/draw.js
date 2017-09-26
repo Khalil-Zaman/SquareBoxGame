@@ -63,9 +63,9 @@ function draw_unit(i, l_array){
 				if (section == 1) hit_check(x1, y1, w, h, 2);
 				if (section == 3) hit_check(x1, y1, w, h, 2);
 			}
-			rect(x1, y1, w, h);
 			fill(65, 105, 225);
-			rect(x1, y1, w, Math.floor(unit_height/3)+1);
+			rect(x1, y1, w, h);
+			//rect(x1, y1, w, Math.floor(unit_height/3)+1);
 		} else if (l_array[i] == 3) {
 			if (i >= sect_1_i && i < sect_3_i){
 				fill(0);
@@ -75,9 +75,9 @@ function draw_unit(i, l_array){
 				if (section == 1) hit_check(x1, y1, w, h, 3);
 				if (section == 3) hit_check(x1, y1, w, h, 3);
 			}
-			rect(x1, y1, w, h);
 			fill(65, 105, 225);
-			rect(x1, y1+h-(Math.floor(unit_height/3)+1), w, Math.floor(unit_height/3)+1);
+			rect(x1, y1, w, h);
+			//rect(x1, y1+h-(Math.floor(unit_height/3)+1), w, Math.floor(unit_height/3)+1);
 		} else if (l_array[i] == 4) { /*REWARD*/
 			draw_star = true;
 			if (i >= sect_3_i) {
@@ -115,9 +115,9 @@ function draw_unit(i, l_array){
 				if (section == 1) hit_check(x1, y1, w, h, 5);
 				if (section == 3) hit_check(x1, y1, w, h, 5);
 			}
-			rect(x1, y1, w, h);
 			set_color_purple();
-			rect(x1+w-(Math.floor(unit_height/3)+1), y1, Math.floor(unit_height/3)+1, h);
+			rect(x1, y1, w, h);
+			//rect(x1+w-(Math.floor(unit_height/3)+1), y1, Math.floor(unit_height/3)+1, h);
 		}  else if (l_array[i] == 6) {
 			if (i >= sect_1_i && i < sect_3_i){
 				fill(0);
@@ -127,21 +127,29 @@ function draw_unit(i, l_array){
 				if (section == 1) hit_check(x1, y1, w, h, 6);
 				if (section == 3) hit_check(x1, y1, w, h, 6);
 			}
-			rect(x1, y1, w, h);
 			set_color_purple();
-			rect(x1, y1, Math.floor(unit_height/3)+1, h);
+			rect(x1, y1, w, h);
+			//rect(x1, y1, Math.floor(unit_height/3)+1, h);
 		}
 
 	}
 }
 
+var fade_animation = 0;
 function fade_other_sections(){
+	if (fade_animation < 200){
+		fade_animation+= 5;
+	}
 	if (section == 3){
-		fill(123, 123, 123, 123);
+		fill(123, 123, 123, fade_animation);
 		rect(0, 0, windowWidth, Math.ceil(2*windowHeight/3));
 	} else if (section == 2){
-		fill(123, 123, 123, 123);
+		fill(123, 123, 123, fade_animation);
 		rect(0, 0, windowWidth, Math.ceil(windowHeight/3));
+		rect(0,  Math.ceil(2*windowHeight/3), windowWidth, Math.ceil(windowHeight/3));
+	} else {
+		fill(123, 123, 123, fade_animation);
+		rect(0, Math.ceil(windowHeight/3), windowWidth, Math.ceil(2*windowHeight/3));
 	}
 }
 

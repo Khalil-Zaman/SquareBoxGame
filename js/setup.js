@@ -94,9 +94,8 @@ function game_setup(){
 			draw_level(play_level());
 			if (level == 1){
 				tutorial();
-			} else {
-				fade_other_sections();
 			}
+			fade_other_sections();
 			draw_section_lines();
 		}
 		draw_player();

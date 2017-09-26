@@ -21,39 +21,63 @@ function transition_sections(){
 	// Transition between section 3 to 2
 	if (x+player_width>windowWidth && section == 3){
 		difference = (x+player_width) - windowWidth;
-		fill(0);
 		fill(255, 204, 0);
 		rect(windowWidth - difference + speed, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference >= player_width){
-			change_section(2);
+			change_section(3, 2);
 		}
-	// Transition between section 2 to 1
+	// Transition between section 2 to 3
+	} else if (x+player_width>windowWidth && section == 2 && reverse == true){
+		difference = (x+player_width) - windowWidth;
+		fill(255, 204, 0);
+		rect(windowWidth - difference + speed, (y + (windowHeight - bottombar - topbar)/3) + 1, player_width, player_height);
+		if (difference >= player_width){
+			change_section(2, 3);
+		}
+	// Transition from section 2 to 1
 	} else if (x<0 && section == 2){
 		difference = (x+player_width) ;
-		fill(255);
 		fill(255, 204, 0);
 		rect(-difference, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference <= 0){
-			change_section(1);
+			change_section(2, 1);
+		}
+	} else if (x<0 && section == 1){
+		difference = (x+player_width) ;
+		fill(255, 204, 0);
+		rect(-difference, (y + (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
+		if (difference <= 0){
+			change_section(1, 2);
 		}
 	} else if (section == 1 && x > windowWidth){
 		level_completed = true;
 	}
 }
 
-function change_section(new_section){
-
-	if (new_section == 2){
+function change_section(from_section, new_section){
+	if (fade_animation >= 200){
+		fade_animation = 0;
+	}
+	if (new_section == 2 && from_section == 3){
 		y -= (((windowHeight-(bottombar+topbar))/3)-1);
 		x -= player_width;
 		section = 2;
 		base = windowHeight-player_height-bottombar - (((windowHeight-bottombar-topbar)/3)-1);
-	} else
-	if (new_section == 1){
+	} else if (new_section == 1 && from_section == 2){
 		y -= (((windowHeight-(bottombar+topbar))/3)-1);
 		x = 0;
 		section = 1;
 		base = windowHeight-player_height-bottombar - (2*(((windowHeight-bottombar-topbar)/3))-1);
+	} else if (new_section == 3 && from_section == 2){
+		y += (((windowHeight-(bottombar+topbar))/3)-1);
+		x -= player_width;
+		section = 3;
+		base = windowHeight - player_height - bottombar;
+	} else if (new_section == 2 && from_section == 1){
+		y += (((windowHeight-(bottombar+topbar))/3)-1);
+		x -= player_width;
+		section = 2;
+		base = windowHeight-player_height-bottombar - (((windowHeight-bottombar-topbar)/3)-1);
 	}
 }
 
@@ -95,14 +119,16 @@ function constant_gravity(){
 		}
 	}
 }
+
 var bottom_blue = false;
 var blue_base = 0;
 function hit_check(sx, sy, w, h, type){
 	bottom_blue = false;
+	value = collision_detection(sx, sy, w, h, x, y, player_width, player_height);
 	if (type == 1) {
-		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height)) reset();
-	} else if (type == 2) {
-		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 1 || collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 3){
+		if (value) reset();
+	} else if (type == 2 || type == 3) {
+		if (value == 1 || value == 3){
 			if (current_acceleration <= 0){
 				y = sy - player_height;
 				jump = false;
@@ -111,9 +137,19 @@ function hit_check(sx, sy, w, h, type){
 			} else {
 				reset();
 			}
+		} else if (value == 2 || value == 4){
+			if (current_acceleration > 0 || blue_base != 0){
+				jump = false;
+				bottom_blue = true;
+				blue_base = sy + h;
+				y = blue_base;
+				current_acceleration = -1*gravity;
+			} else {
+				reset();
+			}
 		}
 	} else if (type == 3) {
-		if (collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 2 || collision_detection(sx, sy, w, h, x, y, player_width, player_height) == 4){
+		if (value == 2 || value == 4){
 			if (current_acceleration > 0 || blue_base != 0){
 				jump = false;
 				bottom_blue = true;
@@ -125,25 +161,15 @@ function hit_check(sx, sy, w, h, type){
 			}
 		}
 	} else if (type == 4) {
-		if (collision_detection(x, y, player_width, player_height, sx, sy, w, h)) {
+		if (value) {
 			stars[section] = 0;
 		};
 	} else if (type == 5) {
-		value = collision_detection(x, y, player_width, player_height, sx, sy, w, h);
-		scenario_1 = section != 2  && (value == 3 || value == 4);
-		scenario_2 = section == 2 && (value == 3 || value == 2);
-		scenario_3 = section != 2  && (value == 1 || value == 2);
-		scenario_4 = section == 2 && (value == 3 || value == 4);
 		if (value == 3 || value == 4) direction_reverse(5);
-		else if (value == 1 || value == 2) reset();
+		else if (value == 1 || value == 2) direction_reverse(6);
 	} else if (type == 6) {
-		value = collision_detection(x, y, player_width, player_height, sx, sy, w, h);
-		scenario_1 = section != 2  && (value == 1 || value == 2);
-		scenario_2 = section == 2 && (value == 3 || value == 4);
-		scenario_3 = section != 2  && (value == 3 || value == 4);
-		scenario_4 = section == 2 && (value == 1 || value == 2);
 		if (value == 1 || value == 2) direction_reverse(6);
-		else if (value == 3 || value == 4) reset();
+		else if (value == 3 || value == 4) direction_reverse(5);
 	}
 }
 
