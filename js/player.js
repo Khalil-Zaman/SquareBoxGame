@@ -127,7 +127,7 @@ function hit_check(sx, sy, w, h, type){
 	value = collision_detection(sx, sy, w, h, x, y, player_width, player_height);
 	if (type == 1) {
 		if (value) reset();
-	} else if (type == 2 || type == 3) {
+	} else if (type == 2) {
 		if (value == 1 || value == 3){
 			if (current_acceleration <= 0){
 				y = sy - player_height;
@@ -149,34 +149,21 @@ function hit_check(sx, sy, w, h, type){
 			}
 		}
 	} else if (type == 3) {
-		if (value == 2 || value == 4){
-			if (current_acceleration > 0 || blue_base != 0){
-				jump = false;
-				bottom_blue = true;
-				blue_base = sy + h;
-				y = blue_base;
-				current_acceleration = -1*gravity;
-			} else {
-				reset();
-			}
-		}
+		if (value == 3 || value == 4) direction_reverse(6);
+		else if (value == 1 || value == 2) direction_reverse(5);
 	} else if (type == 4) {
 		if (value) {
 			stars[section] = 0;
 		};
-	} else if (type == 5) {
-		if (value == 3 || value == 4) direction_reverse(5);
-		else if (value == 1 || value == 2) direction_reverse(6);
-	} else if (type == 6) {
-		if (value == 1 || value == 2) direction_reverse(6);
-		else if (value == 3 || value == 4) direction_reverse(5);
 	}
 }
 
 function direction_reverse(type){
-	if (section == 2 && type ==  5) reverse = true;
+	// 6 is when the players right hand side hits the obstacles left side
+	// 5 is when the players left hand side hits the obstacles right side
+	if (section == 2 && type ==  5) { alert("HERE TOO"); reverse = true;}
 	else if (section != 2 && type == 5) reverse = false;
-	else if (section == 2 && type == 6) reverse = false;
+	else if (section == 2 && type == 6) { alert("YUP"); reverse = false; }
 	else if (section != 2 && type == 6) reverse = true;
 }
 
@@ -187,16 +174,16 @@ function collision_detection(sx, sy, w, h, x, y, player_width, player_height){
 	condyt = (y >= sy && y <= sy + h);									// top most coordinates of player is in the obstacles y range
 	condyb = (y + player_height >= sy && y + player_height <= sy + h);	// bottom most coordinates of player is in the obstacles y range
 
-	if (condxl && condyb){ // top left
+	if (condxl && condyb){ // top left of player is in obstacles range
 		return 1;
 	}
-	if (condxl && condyt){ // bottom left
+	if (condxl && condyt){ // bottom left of player is in obstacles range
 		return 2;
 	}
-	if (condxr && condyb){ // top right
+	if (condxr && condyb){ // top right of player is in obstacles range
 		return 3;
 	}
-	if (condxr && condyt){ // bottom right
+	if (condxr && condyt){ // bottom right of player is in obstacles range
 		return 4;
 	}
 

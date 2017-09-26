@@ -65,7 +65,6 @@ function draw_unit(i, l_array){
 			}
 			fill(65, 105, 225);
 			rect(x1, y1, w, h);
-			//rect(x1, y1, w, Math.floor(unit_height/3)+1);
 		} else if (l_array[i] == 3) {
 			if (i >= sect_1_i && i < sect_3_i){
 				fill(0);
@@ -75,9 +74,8 @@ function draw_unit(i, l_array){
 				if (section == 1) hit_check(x1, y1, w, h, 3);
 				if (section == 3) hit_check(x1, y1, w, h, 3);
 			}
-			fill(65, 105, 225);
+			set_color_purple();
 			rect(x1, y1, w, h);
-			//rect(x1, y1+h-(Math.floor(unit_height/3)+1), w, Math.floor(unit_height/3)+1);
 		} else if (l_array[i] == 4) { /*REWARD*/
 			draw_star = true;
 			if (i >= sect_3_i) {
@@ -98,41 +96,20 @@ function draw_unit(i, l_array){
 					if (section == 1) hit_check(x1, y1, w/3, w/3, 4);
 					if (section == 3) hit_check(x1, y1, w/3, w/3, 4);
 				}
-				push();
-				translate(x1, y1);
-				rotate(stars_rotation/(10));
-				rectMode(RADIUS);
-				rect(0, 0, w/6, w/6);
-				pop();
-				rectMode(CORNER);
+				draw_rotating_stars(x1, y1, w);
 			}
-		} else if (l_array[i] == 5) {
-			if (i >= sect_1_i && i < sect_3_i){
-				fill(0);
-				if (section==2) hit_check(x1, y1, w, h, 5);
-			} else {
-				fill(255);
-				if (section == 1) hit_check(x1, y1, w, h, 5);
-				if (section == 3) hit_check(x1, y1, w, h, 5);
-			}
-			set_color_purple();
-			rect(x1, y1, w, h);
-			//rect(x1+w-(Math.floor(unit_height/3)+1), y1, Math.floor(unit_height/3)+1, h);
-		}  else if (l_array[i] == 6) {
-			if (i >= sect_1_i && i < sect_3_i){
-				fill(0);
-				if (section==2) hit_check(x1, y1, w, h, 6);
-			} else {
-				fill(255);
-				if (section == 1) hit_check(x1, y1, w, h, 6);
-				if (section == 3) hit_check(x1, y1, w, h, 6);
-			}
-			set_color_purple();
-			rect(x1, y1, w, h);
-			//rect(x1, y1, Math.floor(unit_height/3)+1, h);
 		}
-
 	}
+}
+
+function draw_rotating_stars(x1, y1, w){
+	push();
+	translate(x1, y1);
+	rotate(stars_rotation/(10));
+	rectMode(RADIUS);
+	rect(0, 0, w/6, w/6);
+	pop();
+	rectMode(CORNER);
 }
 
 var fade_animation = 0;
