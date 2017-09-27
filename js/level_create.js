@@ -11,11 +11,9 @@ function change_unit(){
 	pos = (unit_y*vertical_division) + unit_x;
 	if (level_create_array[pos] == 0) level_create_array[pos] = 1; // obstacle
 	else if (level_create_array[pos] == 1) level_create_array[pos] = 2; // blue
-	else if (level_create_array[pos] == 2) level_create_array[pos] = 3; // blue
+	else if (level_create_array[pos] == 2) level_create_array[pos] = 3; // purple
 	else if (level_create_array[pos] == 3) level_create_array[pos] = 4; // star
-	else if (level_create_array[pos] == 4) level_create_array[pos] = 5; // purple
-	else if (level_create_array[pos] == 5) level_create_array[pos] = 6;
-	else if (level_create_array[pos] == 6) level_create_array[pos] = 0;
+	else if (level_create_array[pos] == 4) level_create_array[pos] = 0;
 }
 
 function lines(){

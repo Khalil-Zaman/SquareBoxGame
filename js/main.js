@@ -2,7 +2,11 @@ p5.disableFriendlyErrors = true;
 var screen = 1, backscreen = [];
 
 function setup() {
-	createCanvas(windowWidth,windowHeight)
+
+	var canvas = createCanvas(900,450);
+	canvas.parent('canvas-holder');
+	windowWidth = 20*45;
+	windowHeight = 15*30;
 	initialize_variables();
 	noStroke();
 	frameRate(60);
@@ -10,6 +14,7 @@ function setup() {
 
 function draw() {
 	background_setup();
+	//alert(unit_width + " - " +  unit_height);
 	if (screen == 1) { main_menu_setup(); }
 	else if (screen == 2){ arc_selection_setup(); }
 	else if (screen == 3){ blue_levels(); complete_reset(); display_message(message); }

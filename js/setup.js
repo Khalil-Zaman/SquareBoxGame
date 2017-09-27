@@ -92,9 +92,7 @@ function game_setup(){
 			draw_level(level_create_array);
 		} else {
 			draw_level(play_level());
-			if (level == 1){
-				tutorial();
-			}
+			if (level == 1)	tutorial();
 			fade_other_sections();
 			draw_section_lines();
 		}

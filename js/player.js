@@ -19,7 +19,7 @@ function move(){
 function transition_sections(){
 	difference = 0;
 	// Transition between section 3 to 2
-	if (x+player_width>windowWidth && section == 3){
+	if (x+player_width>windowWidth && section == 3 && reverse == false){
 		difference = (x+player_width) - windowWidth;
 		fill(255, 204, 0);
 		rect(windowWidth - difference + speed, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
@@ -35,15 +35,16 @@ function transition_sections(){
 			change_section(2, 3);
 		}
 	// Transition from section 2 to 1
-	} else if (x<0 && section == 2){
+	} else if (x<0 && section == 2 && reverse == false){
 		difference = (x+player_width) ;
 		fill(255, 204, 0);
 		rect(-difference, (y - (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference <= 0){
 			change_section(2, 1);
 		}
-	} else if (x<0 && section == 1){
-		difference = (x+player_width) ;
+	// Transition from section 1 to 2
+	} else if (x<0 && section == 1 && reverse == true){
+		difference = (x+player_width);
 		fill(255, 204, 0);
 		rect(-difference, (y + (windowHeight-bottombar-topbar)/3)+1, player_width, player_height);
 		if (difference <= 0){
@@ -74,8 +75,8 @@ function change_section(from_section, new_section){
 		section = 3;
 		base = windowHeight - player_height - bottombar;
 	} else if (new_section == 2 && from_section == 1){
-		y += (((windowHeight-(bottombar+topbar))/3)-1);
-		x -= player_width;
+		y += Math.floor(((windowHeight-(bottombar+topbar))/3)-2);
+		x += player_width;
 		section = 2;
 		base = windowHeight-player_height-bottombar - (((windowHeight-bottombar-topbar)/3)-1);
 	}
@@ -167,8 +168,6 @@ function hit_check(sx, sy, w, h, type){
 				move();
 			}
 		}
-		//if (value == 3 || value == 4) { alert("CALLING HERE 6"); direction_reverse(6); }
-		//else if (value == 1 || value == 2) {alert("CALLING HERE 5"); direction_reverse(5); }
 	} else if (type == 4) {
 		if (value) {
 			stars[section] = 0;

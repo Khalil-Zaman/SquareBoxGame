@@ -1,11 +1,29 @@
+@font-face {
+	font-family: squarefont;
+	src: url(../js/fonts/Orbitron_Medium.ttf);
+}
 
-body {margin:0; padding:0;overflow:hidden;} /* remove top and left whitespace */
 canvas {display:block;}    /* remove scrollbars */
 canvas:focus {outline:0;} /* remove blue outline around canvas */
 .fs {position:fixed; bottom:20px; right:20px;}
 #enter {display:block;}
 #exit {display:none;}
+html, body {
+  height: 100%;
+}
 
+body {
+	padding: 0;
+	overflow: hidden;/* remove top and left whitespace */
+  margin: 0;
+  /*display: flex;*/
+
+  /* This centers our sketch horizontally. */
+  /*justify-content: center;*/
+
+  /* This centers our sketch vertically. */
+  /*align-items: center;*/
+}
 a{text-decoration:none;}
 
 #middle{

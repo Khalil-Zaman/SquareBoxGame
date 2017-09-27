@@ -27,19 +27,16 @@
 <script src="js/blue.js"></script>
 <script src="js/purple.js"></script>
 
-<body>
+<body style="background-color:white;">
 <!--<div id="messages" style="position:fixed;"></div>-->
 <div id="ad1" style="position:fixed;"></div>
-<!--<body style="background-color:black;">
+<div class="w3-container" style="padding:0;">
+  <div class="w3-center w3-container w3-light-grey" style="font-family: squarefont; font-size:54px;">
+    SQUARE BOX GAME
+  </div>
+  <div id="canvas-holder" class="w3-card" style="height:450px; width:900px; margin:auto; background-color:blue;"></div>
 
-<div id="middle">
-
-			<a href="game.php">
-			<div id="play-btn" class="w3-btn w3-black">
-			PLAY
-			<div>
-			</a>
-</div>-->
+</div>
 
 </body>
 <div id="ad2" style="position:fixed; bottom:0;"></div>

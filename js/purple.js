@@ -16,6 +16,6 @@ function initialize_purple_variables(){
 
 function purple_levels_extra_draw(){
 	set_color_purple();
-	rect(Math.floor(x1), y1, Math.ceil(box_dimension/10), box_dimension);
-	rect(Math.floor(x1 + 9*box_dimension/10), y1, Math.ceil(box_dimension/10), box_dimension);
+	//rect(Math.floor(x1), y1, Math.ceil(box_dimension/10), box_dimension);
+	//rect(Math.floor(x1 + 9*box_dimension/10), y1, Math.ceil(box_dimension/10), box_dimension);
 }
